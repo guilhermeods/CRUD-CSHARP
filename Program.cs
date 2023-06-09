@@ -1,7 +1,9 @@
 ﻿namespace TechoneDesafio{
     class App{
-        static void Main(){
-            while(true){
+        static void Main()
+        {
+            while(true)
+            {
                 PessoaRepo pessoaRepo = new PessoaRepo();
                 string nome,email,tel;
 
@@ -10,7 +12,8 @@
                 int op = int.Parse(input);
                 
                 //Criar novos dados
-                if(op==1){
+                if(op==1)
+                {
                     Console.WriteLine("Entre com os novos dados:");
                     Console.WriteLine("Nome:");
                     nome= Console.ReadLine();
@@ -19,7 +22,8 @@
                     Console.WriteLine("Telefone:");
                     tel= Console.ReadLine();
                     
-                    Pessoa p = new Pessoa{
+                    Pessoa p = new Pessoa
+                    {
                         Nome = nome,
                         Email = email,
                         Tel = tel
@@ -28,16 +32,20 @@
                     pessoaRepo.CriarPessoa(p);
                 }
                 //Lista todos os dados
-                else if(op==2){
+                else if(op==2)
+                {
                     List<Pessoa> pessoas = pessoaRepo.ListarPessoas();
-                    foreach(Pessoa pessoa in pessoas){
+                    foreach(Pessoa pessoa in pessoas)
+                    {
                         Console.WriteLine($"Id:{pessoa.Id};Nome:{pessoa.Nome}\n");
                     }
                 }
                 //Busca um id fixo
-                else if(op==3){
+                else if(op==3)
+                {
                     List<Pessoa> pessoas = pessoaRepo.ListarPessoas();
-                    foreach(Pessoa pessoa in pessoas){
+                    foreach(Pessoa pessoa in pessoas)
+                    {
                         Console.WriteLine($"Id:{pessoa.Id};Nome:{pessoa.Nome}\n");
                     }
                     Console.WriteLine("Escolha um id dos apresentados acima");
@@ -48,9 +56,11 @@
 
                 }
                 //Atualizar um dado
-                else if(op==4){
+                else if(op==4)
+                {
                     List<Pessoa> pessoas = pessoaRepo.ListarPessoas();
-                    foreach(Pessoa pessoa in pessoas){
+                    foreach(Pessoa pessoa in pessoas)
+                    {
                         Console.WriteLine($"Id:{pessoa.Id};Nome:{pessoa.Nome}\n");
                     }
                     Console.WriteLine("Escolha um id dos apresentados acima");
@@ -58,7 +68,8 @@
                     int id = int.Parse(dado);
                     Pessoa pessoa1=pessoaRepo.ObterPessoaPorId(id);
                     //Verificando se o id é valido
-                    if(pessoa1!=null){
+                    if(pessoa1!=null)
+                    {
                         Console.WriteLine($"Pessoa sendo Atualizada:\nId:{pessoa1.Id}\nNome:{pessoa1.Nome}\nE-MAIL:{pessoa1.Email}\nTel:{pessoa1.Tel}");
                         Console.WriteLine("Entre com os novos dados:");
                         Console.WriteLine("Nome:");
@@ -71,9 +82,11 @@
                     }
                 }
                 //Excluir um dado
-                else if(op==5){
+                else if(op==5)
+                {
                     List<Pessoa> pessoas = pessoaRepo.ListarPessoas();
-                    foreach(Pessoa pessoa in pessoas){
+                    foreach(Pessoa pessoa in pessoas)
+                    {
                         Console.WriteLine($"Id:{pessoa.Id};Nome:{pessoa.Nome}\n");
                     }
                     Console.WriteLine("Escolha um id dos apresentados acima");
@@ -81,7 +94,8 @@
                     int id = int.Parse(dado);
                     Pessoa pessoa1=pessoaRepo.ObterPessoaPorId(id);
                     //Verificando se o id é valido 
-                    if(pessoa1!=null){
+                    if(pessoa1!=null)
+                    {
                         Console.WriteLine($"Pessoa sendo Excluida:\nId:{pessoa1.Id}\nNome:{pessoa1.Nome}\nE-MAIL:{pessoa1.Email}\nTel:{pessoa1.Tel}");
                         Console.Write("Confirma a exclusao:\n1-Sim.\noutro valor-Nao.");
                         dado = Console.ReadLine(); 

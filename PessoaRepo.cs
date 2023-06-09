@@ -19,7 +19,8 @@ namespace TechoneDesafio
             createTableCommand.ExecuteNonQuery();
         }
 
-        public void CriarPessoa(Pessoa pessoa){
+        public void CriarPessoa(Pessoa pessoa)
+        {
             string query = "INSERT INTO Pessoas (Nome,Email,Tel) VALUES (@Nome, @Email, @Tel)";
             SQLiteCommand comando = new SQLiteCommand(query, connection);
             comando.Parameters.AddWithValue("@Nome", pessoa.Nome);
@@ -29,7 +30,8 @@ namespace TechoneDesafio
         }
 
 
-        public List<Pessoa> ListarPessoas(){
+        public List<Pessoa> ListarPessoas()
+        {
             List<Pessoa> pessoas = new List<Pessoa>();
             string query = "SELECT * FROM Pessoas";
             SQLiteCommand comando = new SQLiteCommand(query, connection);
@@ -38,7 +40,8 @@ namespace TechoneDesafio
             {
                 while(reader.Read())
                 {
-                    Pessoa pessoa = new Pessoa{
+                    Pessoa pessoa = new Pessoa
+                    {
                         Id = Convert.ToInt32(reader["Id"]),
                         Nome = reader["Nome"].ToString(),
                         Email = reader["Email"].ToString(),
@@ -55,9 +58,12 @@ namespace TechoneDesafio
             SQLiteCommand comando = new SQLiteCommand(query, connection);
             comando.Parameters.AddWithValue("@Id", id);
 
-            using (SQLiteDataReader reader = comando.ExecuteReader()){
-                if(reader.Read()){
-                    Pessoa pessoa = new Pessoa{
+            using (SQLiteDataReader reader = comando.ExecuteReader())
+            {
+                if(reader.Read())
+                {
+                    Pessoa pessoa = new Pessoa
+                    {
                         Id = Convert.ToInt32(reader["Id"]),
                         Nome = reader["Nome"].ToString(),
                         Email = reader["Email"].ToString(),
@@ -72,15 +78,18 @@ namespace TechoneDesafio
             return null;
         }
 
-        public void AtualizarPessoa(Pessoa pessoaz){
+        public void AtualizarPessoa(Pessoa pessoaz)
+        {
             string query = "UPDATE Pessoas SET Nome = @Nome, Email = @Email, Tel = @Tel WHERE Id = @Id";
-            using(SQLiteCommand comando = new SQLiteCommand(query, connection)){
+            using(SQLiteCommand comando = new SQLiteCommand(query, connection))
+            {
                 comando.Parameters.AddWithValue("@Nome", pessoaz.Nome);
                 comando.Parameters.AddWithValue("@Email", pessoaz.Email);
                 comando.Parameters.AddWithValue("@Tel", pessoaz.Tel);
                 comando.Parameters.AddWithValue("@Id", pessoaz.Id);
                 int result = comando.ExecuteNonQuery();
-                if(result>0){
+                if(result>0)
+                {
                     Console.WriteLine("Sucesso na atualizaçao\n");
                 }
                 else 
@@ -88,18 +97,18 @@ namespace TechoneDesafio
             }
             
         }
-        public void ExcluirPessoa(int id){
+        public void ExcluirPessoa(int id)
+        {
             string query = "DELETE FROM Pessoas WHERE Id = @Id";
             SQLiteCommand comando = new SQLiteCommand(query, connection);
             comando.Parameters.AddWithValue("@Id", id);
             int result = comando.ExecuteNonQuery();
-            if(result>0){
-                    Console.WriteLine("Sucesso na atualizaçao\n");
-                }
-                else 
-                    Console.WriteLine("Falha Nenhuma mudacao foi realizada\n");
+            if(result>0)
+            {
+                Console.WriteLine("Sucesso na atualizaçao\n");
+            }
+            else 
+                Console.WriteLine("Falha Nenhuma mudacao foi realizada\n");
         }
-
-
     }
 }
